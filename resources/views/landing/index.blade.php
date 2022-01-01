@@ -1,0 +1,5 @@
+@include('landing.header')
+@yield('css')
+@yield('content')
+@yield('js')
+@include('landing.footer')
