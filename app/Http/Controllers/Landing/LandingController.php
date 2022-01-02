@@ -47,6 +47,6 @@ class LandingController extends Controller
     }
 
     public function prizesPage() {
-
+        return view('landing.prizes.index');
     }
 }

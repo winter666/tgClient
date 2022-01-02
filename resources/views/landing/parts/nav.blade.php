@@ -8,13 +8,11 @@
                             <a class="nav-link" href="/">Main</a>
                         </div>
                         <div class="nav-item">
-                            <a class="nav-link" href="#about" id="about-link" data-target="about">About</a>
+                            <a class="nav-link" href="/#about" id="about-link" data-target="about">About</a>
                         </div>
-                        @if ($pricing->count())
-                            <div class="nav-item">
-                                <a class="nav-link" href="#pricing" id="pricing-link" data-target="pricing">Pricing</a>
-                            </div>
-                        @endif
+                        <div class="nav-item">
+                            <a class="nav-link" href="/#pricing" id="pricing-link" data-target="pricing">Pricing</a>
+                        </div>
                         <div class="nav-item">
                             <a class="nav-link" href="/prizes">Prizes</a>
                         </div>
@@ -30,6 +28,12 @@
                         </div>
                         <div class="btn-wrap">
                             <button class="btn btn-outline-success" onclick="window.location='/register'">Sing up</button>
+                        </div>
+                    </div>
+                @else
+                    <div class="auth-btns">
+                        <div class="btn-wrap">
+                            <button class="btn btn-outline-success" onclick="window.location='/home/my-bots'">My bots</button>
                         </div>
                     </div>
                 @endguest

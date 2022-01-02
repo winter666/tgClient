@@ -22,7 +22,8 @@
             font-family: 'Nunito', sans-serif;
         }
     </style>
-
+    <link href="{{ asset('/css/landing/header.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/css/landing/footer.css') }}" rel="stylesheet"/>
     @yield('css-links')
 </head>
 <body>
