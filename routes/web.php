@@ -23,8 +23,8 @@ Route::namespace('App\Http\Controllers\Landing')->group(function () {
 
 Route::prefix('home')->middleware('auth')->group(function() {
     Route::get('/', function () {
-        return view('welcome');
-    });
+        return view('home.index');
+    })->name('home');
 });
 
 Route::prefix('forms')->group(function() {
@@ -35,3 +35,7 @@ Route::prefix('forms')->group(function() {
        return view('landing.parts.modals.register');
    })->name('forms.register');
 });
+
+Route::fallback(function() {
+    return view('errors.not-found');
+})->name('fallback');

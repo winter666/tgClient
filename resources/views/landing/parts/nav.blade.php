@@ -39,6 +39,10 @@
                         <div class="btn-wrap">
                             <button class="btn btn-outline-success" onclick="window.location='/home/my-bots'">My bots</button>
                         </div>
+                        <div class="btn-wrap">
+                            <button class="btn btn-outline-info" onclick="$('#logout-form').submit()">Log out</button>
+                            <form method="POST" action="/logout" id="logout-form">@csrf</form>
+                        </div>
                     </div>
                 @endguest
             </div>

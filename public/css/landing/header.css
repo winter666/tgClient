@@ -30,7 +30,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 160px;
+    width: 180px;
 }
 .navigation-block .auth-btns > .btn-wrap {
     background-color: #ffffff;
