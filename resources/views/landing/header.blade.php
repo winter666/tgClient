@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="{{ asset('/css/bootstrap/4/bootstrap.min.css') }}" rel="stylesheet"/>
-    <script defer src="{{ asset('/js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('/js/jquery/jquery.min.js') }}"></script>
     <script defer src="{{ asset('/js/bootstrap/4/bootstrap.min.js') }}" ></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">

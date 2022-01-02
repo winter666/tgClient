@@ -24,10 +24,14 @@
                 @guest
                     <div class="auth-btns">
                         <div class="btn-wrap">
-                            <button class="btn btn-outline-success" data-toggle="modal" data-target="#modal-window">Log in</button>
+                            <button class="btn btn-outline-success" data-toggle="modal"
+                                    data-target="#modal-window" data-action="{{ route('forms.login') }}"
+                                    data-title="Login">Log in</button>
                         </div>
                         <div class="btn-wrap">
-                            <button class="btn btn-outline-success" data-toggle="modal" data-target="#modal-window">Sing up</button>
+                            <button class="btn btn-outline-success" data-toggle="modal"
+                                    data-target="#modal-window" data-action="{{ route('forms.register') }}"
+                                    data-title="Registration">Sing up</button>
                         </div>
                     </div>
                 @else
@@ -41,9 +45,3 @@
         </div>
     </div>
 </div>
-
-@section('js')
-    <script>
-        // TODO: написать скрипт для получения и отправки формы для авторизации и регистрации
-    </script>
-@endsection
