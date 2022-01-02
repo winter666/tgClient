@@ -45,4 +45,8 @@ class LandingController extends Controller
         $pricing = collect($pricing);
         return view('landing.main.index', compact('pricing'));
     }
+
+    public function prizesPage() {
+
+    }
 }
