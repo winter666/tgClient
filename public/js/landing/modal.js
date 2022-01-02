@@ -51,6 +51,10 @@ $(document).ready(function () {
                 sendBtn.attr('disabled', true);
             },
             success(data) {
+                if (data.access_token) {
+                    localStorage.setItem('access_token', data.access_token);
+                }
+
                 window.location = data.web_hook;
             },
             error(e) {

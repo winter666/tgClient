@@ -42,6 +42,16 @@
                         <div class="btn-wrap">
                             <button class="btn btn-outline-info" onclick="$('#logout-form').submit()">Log out</button>
                             <form method="POST" action="/logout" id="logout-form">@csrf</form>
+                            <script defer>
+                                $(document).ready(function() {
+                                    let token = localStorage.getItem('access_token');
+                                    let form = $('#logout-form');
+                                    form.append(`<input type="hidden" name="access_token" value="${token}"/>`);
+                                    form.submit((event) => {
+                                        localStorage.removeItem('access_token');
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
                 @endguest

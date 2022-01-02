@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -85,8 +86,9 @@ class RegisterController extends Controller
             return $response;
         }
 
+        $tokenData = Auth::user()->createToken('access_token');
         return $request->wantsJson()
-            ? new JsonResponse(['web_hook' => route('home')], 201)
+            ? new JsonResponse(['web_hook' => route('home'), 'access_token' => $tokenData->accessToken->token], 201)
             : redirect($this->redirectPath());
     }
 }
