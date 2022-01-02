@@ -1,0 +1,7 @@
+#pricing {
+    margin-bottom: 20px;
+}
+#pricing .pricing-item {
+    width: 30%;
+    height: 300px;
+}

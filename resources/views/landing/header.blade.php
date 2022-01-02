@@ -22,6 +22,8 @@
             font-family: 'Nunito', sans-serif;
         }
     </style>
+
+    @yield('css-links')
 </head>
 <body>
 
