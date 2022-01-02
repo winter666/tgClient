@@ -16,25 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::namespace('App\Http\Controllers\Landing')->group(function () {
-    Route::get('/', 'LandingController@index')->name('landing.index');
-    Route::get('/prizes', 'LandingController@prizesPage')->name('landing.prizes');
-});
+require 'landing.php'; // landing routes
 
-Route::prefix('home')->middleware('auth')->group(function() {
-    Route::get('/', function () {
-        return view('home.index');
-    })->name('home');
-});
+require 'vue.php'; // in app home vue - levels routes
 
-Route::prefix('forms')->group(function() {
-   Route::get('/login', function () {
-       return view('landing.parts.modals.login');
-   })->name('forms.login');
-   Route::get('/register', function () {
-       return view('landing.parts.modals.register');
-   })->name('forms.register');
-});
+require 'forms.php'; // modal form templates routes
 
 Route::fallback(function() {
     return view('errors.not-found');
