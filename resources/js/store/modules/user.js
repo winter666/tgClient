@@ -12,8 +12,8 @@ export default {
     actions: {
         setUser(ctx) {
             users.getAuthUser().then(response => {
-                console.log(response);
-                // ctx.commit('SET_USER', payload);
+                let user = response.data.attachments.user;
+                ctx.commit('SET_USER', user);
             });
         }
     },

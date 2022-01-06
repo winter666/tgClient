@@ -11,27 +11,23 @@ const routes = [
         children: [
             {
                 path: '/',
-                component: () => import('../components/ExampleComponent')
+                component: () => import('../pages/MyBots/MyBotsIndex')
             },
             {
-                path: 'my-bots',
-                component: () => import('../components/ExampleComponent')
+                path: 'bot/new',
+                component: () => import('../pages/MyBots/MyBotsNew')
             },
             {
-                path: 'my-bots/new',
-                component: () => import('../components/ExampleComponent')
-            },
-            {
-                path: 'my-bots/:id/settings',
-                component: () => import('../components/ExampleComponent')
+                path: 'bot/:id/settings',
+                component: () => import('../pages/MyBots/MyBotsEdit')
             },
             {
                 path: 'prizes',
-                component: () => import('../components/ExampleComponent')
+                component: () => import('../pages/Prizes/Prizes')
             },
             {
                 path: 'settings',
-                component: () => import('../components/ExampleComponent')
+                component: () => import('../pages/Settings/Settings')
             }
         ]
     },

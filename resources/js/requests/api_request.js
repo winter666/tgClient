@@ -6,27 +6,27 @@ const api_requests = {
     },
 
     get: (uri) => {
-        let headers = this.headers;
+        let headers = api_requests.headers;
         return axios.get('http://telegram-bot.manager/api/' + uri, { headers });
     },
 
     post: (uri, data = {}) => {
-        let headers = this.headers;
+        let headers = api_requests.headers;
         return axios.post('http://telegram-bot.manager/api/' + uri, data, { headers });
     },
 
     delete: (uri) => {
-        let headers = this.headers;
+        let headers = api_requests.headers;
         return axios.delete('http://telegram-bot.manager/api/' + uri, { headers });
     },
 
     put: (uri, data = {}) => {
-        let headers = this.headers;
+        let headers = api_requests.headers;
         return axios.post('http://telegram-bot.manager/api/' + uri, data, { headers });
     },
 
     patch: (uri, data = {}) => {
-        let headers = this.headers;
+        let headers = api_requests.headers;
         return axios.post('http://telegram-bot.manager/api/' + uri, data, { headers });
     }
 

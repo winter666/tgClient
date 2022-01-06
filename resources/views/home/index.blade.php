@@ -21,6 +21,8 @@
             }
         </style>
         <link href="{{ asset('/css/build/app.css'.'?version='.date("ymdhis").'') }}" rel="stylesheet"/>
+        <script defer src="{{ asset('/js/build/manifest.js'.'?version='.date("ymdhis").'') }}"></script>
+        <script defer src="{{ asset('/js/build/vendor.js'.'?version='.date("ymdhis").'') }}"></script>
         <script defer src="{{ asset('/js/build/app.js'.'?version='.date("ymdhis").'') }}"></script>
     </head>
     <body class="antialiased">
