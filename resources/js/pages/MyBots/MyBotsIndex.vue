@@ -1,5 +1,6 @@
 <template>
     <div id="my-bots-index">
+        <h2>My Bots</h2>
         <table class="table">
             <thead>
                 <th>Id</th>

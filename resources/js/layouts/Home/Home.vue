@@ -1,22 +1,14 @@
 <template>
     <div id="home">
-        <div class="header">
-            <h1 @click="redirectTo()" class="pointer">Bot Manager</h1>
-        </div>
-        <div class="nav">
-            <div class="nav-item">
-                <router-link class="nav-link" :to="'/home'">My Bots</router-link>
+        <Sidebar />
+        <div class="content" :class="{content__sidebar_opened: getSidebarState}">
+            <div v-if="is_loaded">
+                <router-view></router-view>
             </div>
-            <div class="nav-item">
-                <router-link class="nav-link" :to="'/home/prizes'">Prizes</router-link>
-            </div>
-            <div class="nav-item">
-                <router-link class="nav-link" :to="'/home/settings'">Settings</router-link>
+            <div v-else>
+                <img src="/img/loader.gif" alt="loader .GIF"/>
             </div>
         </div>
-        <transition>
-            <router-view></router-view>
-        </transition>
         <div class="footer">
             Footer
         </div>
@@ -24,27 +16,33 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import Sidebar from "../../components/Sidebar/Sidebar.vue";
 
 export default {
     name: "Home",
+    components: { Sidebar },
     data() {
-        return {}
+        return {
+            is_loaded: false
+        }
     },
     methods: {
         ...mapActions(['setUser']),
-
-        redirectTo(path = '') {
-            window.location = 'http://telegram-bot.manager/' + path;
-        }
+    },
+    computed: {
+        ...mapGetters(['getSidebarState'])
     },
     created() {
-        this.setUser();
+        Promise.all([
+            this.setUser()
+        ]).then(data => {
+            setTimeout(() => {
+                this.is_loaded = true;
+            }, 1300)
+        });
     }
 }
 </script>
 
-<style scoped lang="sass">
-.pointer
-    cursor: pointer
-</style>
+<style scoped lang="sass" src="./Home.sass"></style>

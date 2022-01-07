@@ -11,9 +11,16 @@ export default {
     },
     actions: {
         setUser(ctx) {
-            users.getAuthUser().then(response => {
-                let user = response.data.attachments.user;
-                ctx.commit('SET_USER', user);
+            return new Promise((resolve, reject) => {
+                users.getAuthUser()
+                    .then(response => {
+                        let user = response.data.attachments.user;
+                        ctx.commit('SET_USER', user);
+                        resolve(user);
+                    })
+                    .catch((e) => {
+                        reject(e);
+                    });
             });
         }
     },

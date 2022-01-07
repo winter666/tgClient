@@ -1,0 +1,17 @@
+<div class="sidebar-left" :style="sidebarStyles">
+    <BurgerMenu :default-open="isOpen" @onClickEvt="toggleSidebar"/>
+    <h4 @click="redirectTo()" class="title pointer">Bot Manager</h4>
+    <template v-if="isOpen">
+        <div class="navbar-list">
+            <div class="navbar-list-item">
+                <router-link class="nav-link" :to="'/home'">My Bots</router-link>
+            </div>
+            <div class="navbar-list-item">
+                <router-link class="nav-link" :to="'/home/prizes'">Prizes</router-link>
+            </div>
+            <div class="navbar-list-item">
+                <router-link class="nav-link" :to="'/home/settings'">Settings</router-link>
+            </div>
+        </div>
+    </template>
+</div>
