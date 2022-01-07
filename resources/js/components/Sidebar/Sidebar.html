@@ -1,6 +1,8 @@
 <div class="sidebar-left" :style="sidebarStyles">
     <BurgerMenu :default-open="isOpen" @onClickEvt="toggleSidebar"/>
-    <h4 @click="redirectTo()" class="title pointer">Bot Manager</h4>
+    <h4>
+        <span @click="redirectTo()" class="title">Bot Manager</span>
+    </h4>
     <template v-if="isOpen">
         <div class="navbar-list">
             <div class="navbar-list-item">
