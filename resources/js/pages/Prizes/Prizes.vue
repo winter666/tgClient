@@ -1,6 +1,9 @@
 <template>
-  <div id="prizes">
-      <h1>Prizes</h1>
+  <div class="root" id="prizes">
+      <h2>Prizes</h2>
+      <div class="wrapper-content">
+
+      </div>
   </div>
 </template>
 
@@ -10,6 +13,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
+@import 'resources/js/layouts/Home/PageStyles'
 
 </style>

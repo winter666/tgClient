@@ -1,9 +1,11 @@
 <template>
-    <div id="settings">
+    <div class="root" id="settings">
         <h2>Settings</h2>
-        <h4>{{ getUser.name }}</h4>
-        <div>
-            <input v-model="user_name" />
+        <div class="wrapper-content">
+            <h4>{{ getUser.name }}</h4>
+            <div>
+                <input v-model="user_name" />
+            </div>
         </div>
     </div>
 </template>
@@ -31,6 +33,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
+@import 'resources/js/layouts/Home/PageStyles'
 
 </style>

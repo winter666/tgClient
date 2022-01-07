@@ -1,28 +1,30 @@
 <template>
-    <div id="bot-new">
-        <h4 class="title">New Bot</h4>
-        <div class="data-form">
-            <div class="data-block">
-                <CustomValidateInput
-                    :id="'local_name_bot'"
-                    :name="'local_name'"
-                    @onInput="setData"
-                    :rules="['not_empty', 'bot_username']"
-                    :field_name="'Local Name'"
-                    :default-value="local_name"/>
+    <div class="root" id="bot-new">
+        <h2>New Bot</h2>
+        <div class="wrapper-content">
+            <div class="data-form">
+                <div class="data-block">
+                    <CustomValidateInput
+                        :id="'local_name_bot'"
+                        :name="'local_name'"
+                        @onInput="setData"
+                        :rules="['not_empty', 'bot_username']"
+                        :field_name="'Local Name'"
+                        :default-value="local_name"/>
+                </div>
+                <div class="data-block">
+                    <CustomValidateInput
+                        :id="'api_key_bot'"
+                        :name="'api_key'"
+                        @onInput="setData"
+                        :rules="['not_empty']"
+                        :field_name="'Bot API key'"
+                        :default-value="api_key"/>
+                </div>
             </div>
-            <div class="data-block">
-                <CustomValidateInput
-                    :id="'api_key_bot'"
-                    :name="'api_key'"
-                    @onInput="setData"
-                    :rules="['not_empty']"
-                    :field_name="'Bot API key'"
-                    :default-value="api_key"/>
+            <div>
+                <button class="btn btn-outline-success" @click="createBot()" :disabled="disabled_btn">Create</button>
             </div>
-        </div>
-        <div>
-            <button class="btn btn-outline-success" @click="createBot()" :disabled="disabled_btn">Create</button>
         </div>
     </div>
 </template>
@@ -83,6 +85,8 @@ export default {
 </script>
 
 <style scoped lang="sass">
+@import 'resources/js/layouts/Home/PageStyles'
+
 .data-form
     margin: 20px 0
     .data-block

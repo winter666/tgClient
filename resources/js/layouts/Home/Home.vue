@@ -2,12 +2,9 @@
     <div id="home">
         <Sidebar />
         <div class="content" :class="{content__sidebar_opened: getSidebarState}">
-            <div v-if="is_loaded">
+            <transition>
                 <router-view></router-view>
-            </div>
-            <div v-else>
-                <img src="/img/loader.gif" alt="loader .GIF"/>
-            </div>
+            </transition>
         </div>
         <div class="footer">
             Footer
@@ -23,9 +20,7 @@ export default {
     name: "Home",
     components: { Sidebar },
     data() {
-        return {
-            is_loaded: false
-        }
+        return {}
     },
     methods: {
         ...mapActions(['setUser']),
@@ -36,11 +31,7 @@ export default {
     created() {
         Promise.all([
             this.setUser()
-        ]).then(data => {
-            setTimeout(() => {
-                this.is_loaded = true;
-            }, 1300)
-        });
+        ]);
     }
 }
 </script>

@@ -1,6 +1,9 @@
 <template>
-    <div id="bot-edit">
-        Bot-edit
+    <div class="root" id="bot-edit">
+        <h2>Edit Bot</h2>
+        <div class="wrapper-content">
+
+        </div>
     </div>
 </template>
 
@@ -10,6 +13,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
+@import 'resources/js/layouts/Home/PageStyles'
 
 </style>
