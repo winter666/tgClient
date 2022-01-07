@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div>
-                <button class="btn btn-outline-success" @click="createBot()" :disabled="disabled_btn">Create</button>
+                <button class="btn btn-outline-success" @click="sendRequest()" :disabled="disabled_btn">Create</button>
             </div>
         </div>
     </div>
@@ -31,6 +31,8 @@
 
 <script>
 import CustomValidateInput from "../../components/Inputs/CustomValidateInput/CustomValidateInput";
+import {mapActions} from "vuex";
+
 export default {
     name: "MyBotsNew",
     components: { CustomValidateInput },
@@ -43,6 +45,8 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['createBot']),
+
         setData(payload) {
             if (payload.field === 'local_name') {
                 this.error_checker.local_name = payload.validate.is_error;
@@ -70,9 +74,13 @@ export default {
 
             return true;
         },
-        createBot() {
+        sendRequest() {
             let data = this.serializeData();
-            console.log(data);
+            this.disabled_btn = true;
+            this.createBot(data).then(response => {
+                this.disabled_btn = false;
+                this.$router.push('/home');
+            });
         },
         serializeData() {
             return {

@@ -4,19 +4,25 @@ namespace App\Services;
 
 use App\Jobs\BotCreatedJob;
 use App\Models\Bot;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class BotService
 {
 
-    public function createBot($data) {
+    public function createBot(User $user, $data) {
         $bot = Bot::create([
             'local_name' => $data['local_name'],
             'api_key' => $data['api_key'],
             'status' => Bot::STATUS_PENDING,
-            'user_id' => $data['user_id']
+            'user_id' => $user->id
         ]);
 
-        BotCreatedJob::dispatch($bot);
+        try {
+            BotCreatedJob::dispatchIf($user->bot_limit > 0, $bot);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        }
     }
 
     public function getAllPending() {

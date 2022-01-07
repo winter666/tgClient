@@ -10,15 +10,18 @@ use Illuminate\Http\Request;
 class BotController extends Controller
 {
     public function get(Request $request) {
-        $bots = $request->user()->bots;
+        $bots = $request->user()->bots()->orderBy('id', 'DESC')->get();
+        if ($sort = $request->get('sort')) {
+            $bots = $request->user()->bots()->orderBy($sort['field'], $sort['case'])->get();
+        }
+
         return response()->json(['list' => $bots]);
     }
 
     public function create(BotCreateFormRequest $request, BotService $botService) {
-        $botService->createBot([
+        $botService->createBot($request->user(), [
             'api_key' => $request->get('api_key'),
-            'local_name' => $request->get('local_name'),
-            'user_id' => $request->user()->id
+            'local_name' => $request->get('local_name')
         ]);
 
         return response()->json([], 201);

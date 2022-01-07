@@ -22,6 +22,9 @@ export default {
                         reject(e);
                     });
             });
+        },
+        createBot(ctx, data) {
+            return bot.create(data);
         }
     },
     getters: {
