@@ -6,6 +6,19 @@
                 <button @click="newBot()" class="btn btn-outline-success">Add</button>
             </div>
             <!-- TODO: вместо таблицы сделать блоки с данными -->
+            <div class="bot-list"  v-if="getBotList.length">
+                <div class="bot-item" v-for="bot in getBotList" :key="bot.id">
+                    <div>
+                        <span>Name</span> <span>{{ bot.local_name }}</span>
+                    </div>
+                    <div>
+                        <span>Link</span> <span>{{ bot.link }}</span>
+                    </div>
+                    <div>
+                        <span>Status</span> <span>{{ bot.status }}</span>
+                    </div>
+                </div>
+            </div>
             <table class="table" v-if="getBotList.length">
                 <thead>
                     <th>Id</th>
