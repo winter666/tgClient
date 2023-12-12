@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+    web:
+        image: nginx
+        container_name: nginx_server
+        build:
+            context: .
+            dockerfile: ./devops/nginx/Dockerfile
+        ports:
+            - "80:80"
+        volumes:
+            - ./:/var/www/app
+            - ./devops/logs/nginx:/var/log/nginx/
+        depends_on:
+            - php
+        networks:
+            - backend-network
+
+    php:
+        image: php:fpm-alpine
+        container_name: php-fpm
+        build:
+            context: .
+            dockerfile: ./devops/php/Dockerfile
+        volumes:
+            - ./:/var/www/app
+            - ./devops/logs/php:/var/log/fpm-php.www.log
+        depends_on:
+            - db
+        networks:
+            - backend-network
+
+    db:
+        container_name: mysql_db
+        image: mysql:latest
+        command: ['--default-authentication-plugin=mysql_native_password']
+        restart: always
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: test_db
+            MYSQL_USER: mysqluser
+            MYSQL_PASSWORD: mysqluser
+        volumes:
+            - ./devops/databases/mysql:/var/lib/mysql
+        networks:
+            - backend-network
+
+    redis:
+        image: redis:latest
+        container_name: redis
+        restart: always
+        networks:
+            - backend-network
+        depends_on:
+            - db
+
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin:latest
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            - PMA_ARBITRARY=1
+        volumes:
+            - ./devops/phpMyAdmin/config.user.inc.php:/etc/phpmyadmin/config.inc.php
+        depends_on:
+            - db
+        networks:
+            - backend-network
+
+networks:
+    frontend-network:
+        driver: bridge
+    backend-network:
+        driver: bridge
