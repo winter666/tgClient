@@ -2,15 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * Class User
+ * @package App\Models
+ *
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $email_verified_at
+ * @property int $bot_limit
+ * @property Collection<Bot> $bots
+ *
+ * @method UserFactory factory()
+ */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -45,6 +61,6 @@ class User extends Authenticatable
 
     public function bots()
     {
-        return $this->hasMany(Bot::class, 'user_id', 'id');
+        return $this->hasMany(Bot::class);
     }
 }

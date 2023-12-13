@@ -21,7 +21,7 @@ class CreateBotsTable extends Migration
             $table->enum('status', ['PENDING', 'CREATED', 'DELETED', 'WITH_ERRORS']);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->json('config')->nullable(true);
+            $table->jsonb('config')->nullable(true);
             $table->timestamps();
         });
     }

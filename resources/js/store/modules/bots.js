@@ -14,7 +14,7 @@ export default {
             return new Promise((resolve, reject) => {
                 bot.getBots()
                     .then(response => {
-                        let list = response.data.list;
+                        let list = response.data.data;
                         ctx.commit('SET_BOT_LIST', list);
                         resolve(list);
                     })
