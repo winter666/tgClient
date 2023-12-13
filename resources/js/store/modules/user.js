@@ -14,8 +14,8 @@ export default {
             return new Promise((resolve, reject) => {
                 users.getAuthUser()
                     .then(response => {
-                        let user = response.data.attachments.user;
-                        ctx.commit('SET_USER', user);
+                        let user = response.data;
+                        ctx.commit('SET_USER', response.data);
                         resolve(user);
                     })
                     .catch((e) => {

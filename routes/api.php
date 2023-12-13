@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\BotController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,23 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('App\Http\Controllers\Api')->middleware('auth:sanctum')->group(function() {
     Route::prefix('user')->group(function() {
-        Route::get('auth', 'UserController@getCurrent');
-//        Route::middleware('admin')->group(function() {
-//            Route::get('{id}', 'AdminController@getUser');
-//        });
+        Route::get('auth', [UserController::class, 'authorized']);
     });
 
     Route::prefix('bot')->group(function() {
-//        Route::middleware('admin')->group(function() {
-//            Route::get('all', 'AdminController@getAllBots');
-//        });
-        Route::prefix('get')->group(function() {
-            Route::get('', 'BotController@get');
-            Route::get('{bot_id}', 'BotController@getById');
-        });
-        Route::post('create', 'BotController@create');
-        Route::patch('update', 'BotController@update');
-        Route::delete('delete', 'BotController@update');
+        Route::get('list', [BotController::class, 'index']);
+        Route::get('{bot}', [BotController::class, 'show']);
+        Route::post('store', [BotController::class, 'store']);
+        Route::patch('update', [BotController::class, 'update']);
+        Route::delete('delete', [BotController::class, 'delete']);
     });
 
 });

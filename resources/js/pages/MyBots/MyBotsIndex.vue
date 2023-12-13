@@ -60,7 +60,7 @@ export default {
     methods: {
         ...mapActions(['setBotList']),
         newBot() {
-            this.$router.push('home/bot/new');
+            this.$router.push('bot/new');
         }
     },
     computed: {

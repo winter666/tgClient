@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('landing.main.index', [
             'pricing' => Plan::query()
                 ->orderBy('price')
@@ -16,7 +17,8 @@ class LandingController extends Controller
         ]);
     }
 
-    public function prizesPage() {
+    public function prizesPage()
+    {
         return view('landing.prizes.index');
     }
 }
