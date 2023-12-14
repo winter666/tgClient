@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('home')->middleware('auth')->group(function() {
-    Route::get('', function () {
-        return view('home.index');
-    })->name('home')->where('any', '.*');
-});
+Route::get('home/{any?}', function () {
+    return view('home.index');
+})->middleware('auth')
+    ->where('any', '.*')
+    ->name('home');

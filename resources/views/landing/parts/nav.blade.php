@@ -37,7 +37,7 @@
                 @else
                     <div class="auth-btns">
                         <div class="btn-wrap">
-                            <button class="btn btn-outline-success" onclick="window.location='/home/my-bots'">My bots</button>
+                            <button class="btn btn-outline-success" onclick="window.location='/home'">My bots</button>
                         </div>
                         <div class="btn-wrap">
                             <button class="btn btn-outline-info" onclick="$('#logout-form').submit()">Log out</button>

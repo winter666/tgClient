@@ -13,6 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
  * Class User
  * @package App\Models
  *
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property string $password

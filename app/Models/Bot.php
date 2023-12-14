@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Class Bot
  * @package App\Models
  *
+ * @property int $id
  * @property string $local_name
  * @property string $api_key
  * @property array|null $config

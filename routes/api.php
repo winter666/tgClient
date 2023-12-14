@@ -27,5 +27,4 @@ Route::namespace('App\Http\Controllers\Api')->middleware('auth:sanctum')->group(
         Route::patch('update', [BotController::class, 'update']);
         Route::delete('delete', [BotController::class, 'delete']);
     });
-
 });

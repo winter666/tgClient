@@ -16,7 +16,7 @@ class UserController extends Controller
                 User::query()->findOrFail($id)
             );
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Resource not found'], 400);
+            return response()->json(['message' => 'Resource not found'], 404);
         }
     }
 
@@ -25,7 +25,7 @@ class UserController extends Controller
         try {
             return UserResource::make($request->user());
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Resource not found'], 400);
+            return response()->json(['message' => 'Resource not found'], 404);
         }
     }
 }
