@@ -13,10 +13,9 @@ export default {
         setUser(ctx) {
             return new Promise((resolve, reject) => {
                 users.getAuthUser()
-                    .then(response => {
-                        let user = response.data;
-                        ctx.commit('SET_USER', response.data);
-                        resolve(user);
+                    .then(({data}) => {
+                        ctx.commit('SET_USER', data);
+                        resolve(data);
                     })
                     .catch((e) => {
                         reject(e);

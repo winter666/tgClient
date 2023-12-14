@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Bot;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BotResource extends JsonResource
@@ -14,14 +15,17 @@ class BotResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var Bot $bot */
+        $bot = $this->resource;
+
         return [
-            'id' => $this->id,
-            'local_name' => $this->local_name,
-            'api_key' => $this->api_key,
-            'config' => $this->config,
-            'status' => $this->status,
-            'user_id' => $this->user_id,
-            'link' => $this->link
+            'id' => $bot->id,
+            'local_name' => $bot->local_name,
+            'api_key' => $bot->api_key,
+            'config' => $bot->config,
+            'status' => $bot->status,
+            'user_id' => $bot->user_id,
+            'link' => $bot->link
         ];
     }
 }
