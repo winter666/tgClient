@@ -67,7 +67,7 @@ export default {
         ...mapGetters(['getBotList'])
     },
     created() {
-        this.setBotList().then(list => {
+        this.setBotList().finally(() => {
             setTimeout(() => {
                 this.is_loaded = true;
             }, 1300);
