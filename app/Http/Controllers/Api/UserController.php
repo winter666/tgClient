@@ -9,23 +9,18 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function get(Request $request, $id)
+    public function __construct()
     {
-        try {
-            return UserResource::make(
-                User::query()->findOrFail($id)
-            );
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Resource not found'], 404);
-        }
+        $this->authorizeResource(User::class, 'user');
+    }
+
+    public function get(Request $request, User $user)
+    {
+        return UserResource::make($user);
     }
 
     public function authorized(Request $request)
     {
-        try {
-            return UserResource::make($request->user());
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Resource not found'], 404);
-        }
+        return UserResource::make($request->user());
     }
 }

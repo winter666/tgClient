@@ -6,6 +6,7 @@ use Database\Factories\BotFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Query\Builder;
 
 /**
  * Class Bot
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property User $user
  *
  * @method BotFactory factory()
+ * @method Builder forUser(User $user)
  */
 class Bot extends Model
 {
@@ -44,5 +46,10 @@ class Bot extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeForUser($query, User $user)
+    {
+        return $query->where('user_id', $user->id);
     }
 }
