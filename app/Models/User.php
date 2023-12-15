@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RoleConst;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -65,5 +66,10 @@ class User extends Authenticatable
     public function bots()
     {
         return $this->hasMany(Bot::class);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->hasRole(RoleConst::ROLE_SUPER_ADMIN);
     }
 }

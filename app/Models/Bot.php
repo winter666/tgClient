@@ -50,6 +50,10 @@ class Bot extends Model
 
     public function scopeForUser($query, User $user)
     {
+        if ($user->isSuperAdmin()) {
+            return $query;
+        }
+
         return $query->where('user_id', $user->id);
     }
 }
