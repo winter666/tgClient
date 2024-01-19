@@ -16,7 +16,7 @@ class BotFactory extends Factory
     public function definition()
     {
         return [
-            'local_name' => $this->faker->userName . 'Bot',
+            'local_name' => $this->faker->userName,
             'api_key' => $this->faker->unique()->uuid,
             'config' => [],
             'status' => Bot::STATUS_PENDING,

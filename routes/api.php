@@ -22,9 +22,5 @@ Route::namespace('App\Http\Controllers\Api')->middleware('auth:sanctum')->group(
 
     Route::prefix('bot')->group(function() {
         Route::get('list', [BotController::class, 'index']);
-        Route::get('{bot}', [BotController::class, 'show']);
-        Route::post('store', [BotController::class, 'store']);
-        Route::patch('update', [BotController::class, 'update']);
-        Route::delete('delete', [BotController::class, 'delete']);
     });
 });

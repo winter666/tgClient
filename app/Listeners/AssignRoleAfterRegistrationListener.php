@@ -12,7 +12,7 @@ class AssignRoleAfterRegistrationListener
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param Registered $event
      * @return void
      */
     public function handle(Registered $event)

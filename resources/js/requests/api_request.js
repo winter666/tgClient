@@ -1,33 +1,24 @@
-import axios from 'axios';
+import requests from './request';
 
 const api_requests = {
-    headers: {
-        Authorization: localStorage.getItem('access_token')
-    },
-
     get: (uri) => {
-        let headers = api_requests.headers;
-        return axios.get(process.env.MIX_APP_URL + '/api/' + uri, { headers });
+        return requests.get('api/' + uri);
     },
 
     post: (uri, data = {}) => {
-        let headers = api_requests.headers;
-        return axios.post(process.env.MIX_APP_URL + '/api/' + uri, data, { headers });
+        return requests.post('api/' + uri, data);
     },
 
     delete: (uri) => {
-        let headers = api_requests.headers;
-        return axios.delete(process.env.MIX_APP_URL + '/api/' + uri, { headers });
+        return requests.delete('api/' + uri);
     },
 
     put: (uri, data = {}) => {
-        let headers = api_requests.headers;
-        return axios.post(process.env.MIX_APP_URL + '/api/' + uri, data, { headers });
+        return requests.post('api/' + uri, data);
     },
 
     patch: (uri, data = {}) => {
-        let headers = api_requests.headers;
-        return axios.post(process.env.MIX_APP_URL + '/api/' + uri, data, { headers });
+        return requests.post('api/' + uri, data);
     }
 }
 

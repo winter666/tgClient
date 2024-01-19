@@ -14,11 +14,6 @@ class UserController extends Controller
         $this->authorizeResource(User::class, 'user');
     }
 
-    public function get(Request $request, User $user)
-    {
-        return UserResource::make($user);
-    }
-
     public function authorized(Request $request)
     {
         return UserResource::make($request->user());

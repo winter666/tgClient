@@ -39,7 +39,16 @@ class BotPolicy
 
     public function viewAny(User $user)
     {
+        if ($this->viewAdmin($user)) {
+            return true;
+        }
+
         return $user->can('bot.viewAny');
+    }
+
+    public function viewAdmin(User $user)
+    {
+        return $user->can('bot.viewAdmin');
     }
 
     public function delete(User $user, Bot $bot)

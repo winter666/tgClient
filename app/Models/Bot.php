@@ -50,7 +50,7 @@ class Bot extends Model
 
     public function scopeForUser($query, User $user)
     {
-        if ($user->isSuperAdmin()) {
+        if ($user->can('bot.viewAdmin')) {
             return $query;
         }
 

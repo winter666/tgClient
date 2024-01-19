@@ -32,14 +32,4 @@ class BotController extends Controller
 
         return BotResource::collection($bots);
     }
-
-    public function store(BotCreateFormRequest $request, BotService $botService)
-    {
-        $botService->createBot($request->user(), [
-            'api_key' => $request->get('api_key'),
-            'local_name' => $request->get('local_name')
-        ]);
-
-        return response()->json([], 201);
-    }
 }
