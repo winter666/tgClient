@@ -8,6 +8,7 @@ use App\Http\Resources\BotResource;
 use App\Models\Bot;
 use App\Services\BotService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class BotController extends Controller
 {
@@ -16,7 +17,7 @@ class BotController extends Controller
         $this->authorizeResource(Bot::class, 'bot');
     }
 
-    public function index(Request $request)
+    public function index(Request $request): JsonResource
     {
         $field = 'id';
         $case = 'DESC';

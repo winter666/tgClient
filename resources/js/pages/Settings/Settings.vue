@@ -7,9 +7,17 @@
                 <button class="btn btn-warning" @click="logout">Log out</button>
             </h4>
             <div>
-                <form>
-                    <label for="user-name">Name</label>
-                    <input id="user-name" class="form-control" v-model="user.name" />
+                <form @submit="saveForm">
+                    <div class="form-group mb-2">
+                        <label for="user-name">Name</label>
+                        <input id="user-name" class="form-control" v-model="user.name"/>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="user-email">Email</label>
+                        <input id="user-email" class="form-control" v-model="user.email"/>
+                    </div>
+
+                    <button class="btn btn-success">Save</button>
                 </form>
             </div>
         </div>
@@ -20,7 +28,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Loader from "../../components/Loader/Loader";
 import user from '../../requests/users';
 
@@ -43,24 +51,55 @@ export default {
         ...mapGetters(['getUser'])
     },
     methods: {
+        ...mapActions(['saveUser']),
         logout() {
             let confirmation = confirm('Are you sure to logout?');
 
             if (confirmation) {
                 user.logout()
-                    .then(() => window.location.redirect = '/')
+                    .then(() => window.location = '/')
                     .catch(e => (console.log(e)));
 
             }
+        },
+        userMapping(user) {
+            if (! user) {
+                return false;
+            }
+
+            this.user.name = user.name;
+            this.user.email = user.email;
+
+            this.is_loaded = true;
+        },
+        saveForm(e) {
+            e.preventDefault();
+
+            this.is_loaded = false;
+
+            const userId = this.getUser.id;
+
+            user.update(userId, {...this.user})
+                .then(({data}) => {
+                    this.saveUser(data.data);
+
+                    setTimeout(() => {
+                        this.is_loaded = true;
+                    }, 3000)
+                }).catch((e) => {
+                    console.log(e);
+                    this.is_loaded = true;
+                });
         }
     },
     watch: {
         getUser(val) {
-            if (val) {
-                this.is_loaded = true;
-            }
+            this.userMapping(val);
         },
     },
+    mounted() {
+        this.userMapping(this.getUser);
+    }
 }
 </script>
 

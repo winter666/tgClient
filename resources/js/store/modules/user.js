@@ -23,6 +23,9 @@ export default {
                         reject(e);
                     });
             });
+        },
+        saveUser(ctx, user) {
+            ctx.commit('SET_USER', user);
         }
     },
     getters: {

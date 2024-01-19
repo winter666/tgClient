@@ -14,11 +14,11 @@ const api_requests = {
     },
 
     put: (uri, data = {}) => {
-        return requests.post('api/' + uri, data);
+        return requests.put('api/' + uri, data);
     },
 
     patch: (uri, data = {}) => {
-        return requests.post('api/' + uri, data);
+        return requests.patch('api/' + uri, data);
     }
 }
 

@@ -22,12 +22,12 @@ const requests = {
 
     put: (uri, data = {}) => {
         let headers = requests.headers;
-        return axios.post(process.env.MIX_APP_URL + '/' + uri, data, { headers });
+        return axios.put(process.env.MIX_APP_URL + '/' + uri, data, { headers });
     },
 
     patch: (uri, data = {}) => {
         let headers = requests.headers;
-        return axios.post(process.env.MIX_APP_URL + '/' + uri, data, { headers });
+        return axios.patch(process.env.MIX_APP_URL + '/' + uri, data, { headers });
     }
 };
 

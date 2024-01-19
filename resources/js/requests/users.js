@@ -12,5 +12,9 @@ export default {
 
     logout() {
         return requests.post('logout');
+    },
+
+    update(id, data) {
+        return api_requests.patch(`user/${id}/update`, data);
     }
 }

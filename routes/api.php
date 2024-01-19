@@ -16,9 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('App\Http\Controllers\Api')->middleware('auth:sanctum')->group(function() {
+
+    // USER
+
     Route::prefix('user')->group(function() {
         Route::get('auth', [UserController::class, 'authorized']);
+        Route::prefix('{user}')->group(function() {
+            Route::patch('update', [UserController::class, 'update']);
+        });
     });
+
+    // BOT
 
     Route::prefix('bot')->group(function() {
         Route::get('list', [BotController::class, 'index']);
