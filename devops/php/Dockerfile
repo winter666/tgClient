@@ -23,3 +23,5 @@ RUN install-php-extensions gd apcu
 RUN install-php-extensions gd intl
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+RUN chmod -R 755 /var/www/app/storage/
