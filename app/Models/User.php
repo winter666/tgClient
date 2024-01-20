@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->hasRole(RoleConst::ROLE_SUPER_ADMIN);
     }
+
+    public function botLimitIsOut(): bool
+    {
+        return $this->bots->count() >= $this->bot_limit;
+    }
 }

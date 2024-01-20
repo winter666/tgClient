@@ -5,24 +5,21 @@ namespace App\Policies;
 use App\Models\Bot;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Log;
 
 class BotPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user, Bot $bot)
+    public function create(User $user)
     {
-        if ($user->cannot('bot.create')) {
-            return false;
-        }
-
-        return $user->id === $bot->user_id;
+        return $user->can('bot.create');
     }
 
     public function update(User $user, Bot $bot)
     {
-        if ($user->cannot('bot.update')) {
-            return false;
+        if ($this->viewAdmin($user)) {
+            return true;
         }
 
         return $user->id === $bot->user_id;
@@ -30,8 +27,8 @@ class BotPolicy
 
     public function view(User $user, Bot $bot)
     {
-        if ($user->cannot('bot.view')) {
-            return false;
+        if ($this->viewAdmin($user)) {
+            return true;
         }
 
         return $user->id === $bot->user_id;

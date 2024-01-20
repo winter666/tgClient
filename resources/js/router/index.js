@@ -10,23 +10,28 @@ const routes = [
         component: () => import('../layouts/Home/Home'),
         children: [
             {
-                path: '/',
+                path: '',
+                name: 'my-bots',
                 component: () => import('../pages/MyBots/MyBotsIndex')
             },
             {
                 path: 'bot/new',
-                component: () => import('../pages/MyBots/MyBotsNew')
+                name: 'new-bot',
+                component: () => import('../pages/MyBots/MyBotsNew'),
             },
             {
                 path: 'bot/:id/settings',
-                component: () => import('../pages/MyBots/MyBotsEdit')
+                name: 'bot-settings',
+                component: () => import('../pages/MyBots/MyBotsEdit'),
             },
             {
                 path: 'prizes',
+                name: 'prizes',
                 component: () => import('../pages/Prizes/Prizes')
             },
             {
                 path: 'settings',
+                name: 'settings',
                 component: () => import('../pages/Settings/Settings')
             }
         ]

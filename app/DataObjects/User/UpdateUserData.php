@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\DataObjects\User;
-
 
 use Spatie\DataTransferObject\DataTransferObject;
 

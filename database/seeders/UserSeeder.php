@@ -4,6 +4,7 @@
 namespace Database\Seeders;
 
 
+use App\Enums\BotStatus;
 use App\Enums\RoleConst;
 use App\Models\Bot;
 use App\Models\User;
@@ -30,7 +31,7 @@ class UserSeeder extends Seeder
             'local_name' => 'TestBot',
             'api_key' => Str::random(),
             'config' => [],
-            'status' => Bot::STATUS_PENDING,
+            'status' => BotStatus::STATUS_PENDING,
             'user_id' => $me->id,
             'link' => 'https://t.me/testbot'
         ]);
@@ -39,7 +40,7 @@ class UserSeeder extends Seeder
             'local_name' => 'Test2Bot',
             'api_key' => Str::random(),
             'config' => [],
-            'status' => Bot::STATUS_PENDING,
+            'status' => BotStatus::STATUS_PENDING,
             'user_id' => $me->id,
             'link' => 'https://t.me/test2bot'
         ]);
@@ -48,7 +49,7 @@ class UserSeeder extends Seeder
             'local_name' => 'Test3Bot',
             'api_key' => Str::random(),
             'config' => [],
-            'status' => Bot::STATUS_PENDING,
+            'status' => BotStatus::STATUS_PENDING,
             'user_id' => $me->id,
             'link' => 'https://t.me/test3bot'
         ]);

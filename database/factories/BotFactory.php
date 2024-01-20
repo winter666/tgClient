@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Bot;
+use App\Enums\BotStatus;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +19,7 @@ class BotFactory extends Factory
             'local_name' => $this->faker->userName,
             'api_key' => $this->faker->unique()->uuid,
             'config' => [],
-            'status' => Bot::STATUS_PENDING,
+            'status' => BotStatus::STATUS_PENDING,
             'user_id' => User::factory(),
             'link' => 'https://t.me/' . $this->faker->unique()->uuid
         ];

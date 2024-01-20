@@ -80,8 +80,8 @@ export default {
             const userId = this.getUser.id;
 
             user.update(userId, {...this.user})
-                .then(({data}) => {
-                    this.saveUser(data.data);
+                .then(({data: response}) => {
+                    this.saveUser(response.data);
 
                     setTimeout(() => {
                         this.is_loaded = true;

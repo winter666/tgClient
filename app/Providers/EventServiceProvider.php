@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\Bot\CreatedBotEvent;
+use App\Events\Bot\UpdateBotEvent;
 use App\Listeners\AssignRoleAfterRegistrationListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -18,6 +20,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             AssignRoleAfterRegistrationListener::class,
             SendEmailVerificationNotification::class,
+        ],
+        CreatedBotEvent::class => [
+            // CheckUpdates for set active or error status
+        ],
+        UpdateBotEvent::class => [
+            // CheckUpdates for set active or error status
         ],
     ];
 

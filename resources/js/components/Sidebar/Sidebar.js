@@ -1,5 +1,5 @@
 import BurgerMenu from "../BurgerMenu/BurgerMenu.vue";
-import {mapActions, mapGetters} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
     name: "Sidebar",

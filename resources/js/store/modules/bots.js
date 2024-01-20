@@ -25,6 +25,10 @@ export default {
         },
         createBot(ctx, data) {
             return bot.create(data);
+        },
+
+        updateBot(ctx, data) {
+            return bot.update(data.id, data.payload);
         }
     },
     getters: {
