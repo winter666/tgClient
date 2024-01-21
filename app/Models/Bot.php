@@ -2,15 +2,31 @@
 
 namespace App\Models;
 
+use Database\Factories\BotFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\SerializableClosure\Contracts\Serializable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Query\Builder;
 
+/**
+ * Class Bot
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $local_name
+ * @property string $api_key
+ * @property array|null $config
+ * @property string $status
+ * @property int $user_id
+ * @property string $link
+ * @property User $user
+ *
+ * @method static BotFactory factory()
+ * @method Builder forUser(User $user)
+ */
 class Bot extends Model
 {
     use HasFactory;
-
-    public const STATUS_PENDING = 'PENDING';
 
     protected $fillable = [
         'local_name',
@@ -21,9 +37,21 @@ class Bot extends Model
         'link'
     ];
 
-    public function user()
+    protected $casts = [
+        'config' => 'array',
+    ];
+
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class);
     }
 
+    public function scopeForUser($query, User $user)
+    {
+        if ($user->can('bot.viewAdmin')) {
+            return $query;
+        }
+
+        return $query->where('user_id', $user->id);
+    }
 }

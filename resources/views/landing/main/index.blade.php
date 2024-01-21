@@ -50,7 +50,7 @@
                                     <h4 class="font-weight-bold">{{ $price->name }}</h4>
                                     <p>{{ $price->description }}</p>
                                     <div>
-                                        <div>price: {{ $price->price }}</div>
+                                        <div>price: {{ $price->price }}$/month</div>
                                     </div>
                                     <div>
                                         <div>count of bot at account: {{ $price->bot_count }}</div>

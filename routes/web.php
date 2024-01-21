@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Auth::routes();
-
-require 'landing.php'; // landing routes
-
-require 'vue.php'; // in app home vue - levels routes
-
-require 'forms.php'; // modal form templates routes
 
 Route::fallback(function() {
     return view('errors.not-found');

@@ -99,10 +99,10 @@ export default {
                         break;
                     case this.allow_validation_values.bot_username:
                         if (this.input_data.trim().length) {
-                            let pattern = /^@[a-z_]+_bot$/i;
+                            let pattern = /^[A-z_]+(_bot|Bot)$/i;
                             if (!pattern.test(this.input_data.trim())) {
                                 rulesValidation[key] = true;
-                                this.setError(`must start with @ and ended on postfix _bot`, field_name);
+                                this.setError(`must ended on postfix _bot or Bot`, field_name);
                             } else {
                                 rulesValidation[key] = false;
                                 this.removeError(rulesValidation, key);

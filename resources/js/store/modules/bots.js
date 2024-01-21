@@ -13,8 +13,8 @@ export default {
         setBotList(ctx) {
             return new Promise((resolve, reject) => {
                 bot.getBots()
-                    .then(response => {
-                        let list = response.data.list;
+                    .then(({data: response}) => {
+                        let list = response.data;
                         ctx.commit('SET_BOT_LIST', list);
                         resolve(list);
                     })
@@ -25,6 +25,10 @@ export default {
         },
         createBot(ctx, data) {
             return bot.create(data);
+        },
+
+        updateBot(ctx, data) {
+            return bot.update(data.id, data.payload);
         }
     },
     getters: {

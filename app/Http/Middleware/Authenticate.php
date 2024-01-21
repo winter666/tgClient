@@ -15,7 +15,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('fallback', ['fallbackPlaceholder' => 'not-found']);
+            abort(404);
         }
     }
 }

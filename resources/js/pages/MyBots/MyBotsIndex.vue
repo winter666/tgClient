@@ -5,36 +5,27 @@
             <div class="new-bot-display">
                 <button @click="newBot()" class="btn btn-outline-success">Add</button>
             </div>
-            <!-- TODO: вместо таблицы сделать блоки с данными -->
-            <div class="bot-list"  v-if="getBotList.length">
-                <div class="bot-item" v-for="bot in getBotList" :key="bot.id">
-                    <div>
-                        <span>Name</span> <span>{{ bot.local_name }}</span>
+            <div class="bot-list d-flex flex-wrap"  v-if="getBotList.length">
+                <div class="card shadow-sm col-lg-3 col-md-12 col-sm-12 m-2" v-for="bot in getBotList" :key="bot.id">
+                    <div class="card-header">
+                        <span>{{ bot.local_name }}</span>
                     </div>
-                    <div>
-                        <span>Link</span> <span>{{ bot.link }}</span>
+                    <div class="card-body">
+                        <div class="m-4">
+                            <b>Link</b> <a :href="bot.link" target="_blank">{{ bot.link }}</a>
+                        </div>
+                        <div class="m-4">
+                            <span :class="`text-${statusMapping[bot.status]}`"><b>Status:</b> {{ bot.status }}</span>
+                        </div>
                     </div>
-                    <div>
-                        <span>Status</span> <span>{{ bot.status }}</span>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-success" @click="$router.push({ name: 'bot-settings', params: { id: bot.id} })">Edit</button>
+                            <button class="btn btn-danger" @click="deleteBot(bot.id)">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <table class="table" v-if="getBotList.length">
-                <thead>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Link</th>
-                    <th>Status</th>
-                </thead>
-                <tbody>
-                    <tr v-for="bot in getBotList" :key="bot.id">
-                        <td>{{ bot.id }}</td>
-                        <td>{{ bot.local_name }}</td>
-                        <td>{{ bot.link }}</td>
-                        <td>{{ bot.status }}</td>
-                    </tr>
-                </tbody>
-            </table>
             <div v-else class="no-one-bot">
                 <div class="title-message">No one bots</div>
             </div>
@@ -48,30 +39,54 @@
 <script>
 import {mapGetters, mapActions} from "vuex";
 import Loader from "../../components/Loader/Loader";
+import bot from "../../requests/bot";
 
 export default {
     name: "MyBotsIndex",
     components: {Loader},
     data() {
         return {
-            is_loaded: false
+            is_loaded: false,
+            statusMapping: {
+                PENDING: 'warning',
+                ACTIVE: 'success',
+                ERROR: 'danger',
+            },
         }
     },
     methods: {
         ...mapActions(['setBotList']),
         newBot() {
-            this.$router.push('home/bot/new');
+            this.$router.push({ name: 'new-bot' });
+        },
+        deleteBot(id) {
+            let confirmation = confirm('Are you sure?');
+
+            if (! confirmation) {
+                return false;
+            }
+
+            this.is_loaded = false;
+
+            bot.delete(id).then(() => {
+                this.fetchList();
+            }).catch(e => {
+                console.log(e);
+            })
+        },
+        fetchList() {
+            this.setBotList().finally(() => {
+                setTimeout(() => {
+                    this.is_loaded = true;
+                }, 1300);
+            });
         }
     },
     computed: {
         ...mapGetters(['getBotList'])
     },
     created() {
-        this.setBotList().then(list => {
-            setTimeout(() => {
-                this.is_loaded = true;
-            }, 1300);
-        });
+        this.fetchList();
     }
 }
 </script>

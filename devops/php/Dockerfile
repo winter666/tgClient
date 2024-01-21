@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:8.2-fpm
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
@@ -22,6 +22,10 @@ RUN install-php-extensions gd csv
 RUN install-php-extensions gd apcu
 RUN install-php-extensions gd intl
 
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+RUN groupadd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
 
-RUN chmod -R 755 /var/www/app/storage/
+WORKDIR /var/www/app
+
+USER www-data

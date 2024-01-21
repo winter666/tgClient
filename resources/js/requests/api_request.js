@@ -1,35 +1,25 @@
-import axios from 'axios';
+import requests from './request';
 
 const api_requests = {
-    headers: {
-        Authorization: localStorage.getItem('access_token')
-    },
-
     get: (uri) => {
-        let headers = api_requests.headers;
-        return axios.get('http://telegram-bot.manager/api/' + uri, { headers });
+        return requests.get('api/' + uri);
     },
 
     post: (uri, data = {}) => {
-        let headers = api_requests.headers;
-        return axios.post('http://telegram-bot.manager/api/' + uri, data, { headers });
+        return requests.post('api/' + uri, data);
     },
 
     delete: (uri) => {
-        let headers = api_requests.headers;
-        return axios.delete('http://telegram-bot.manager/api/' + uri, { headers });
+        return requests.delete('api/' + uri);
     },
 
     put: (uri, data = {}) => {
-        let headers = api_requests.headers;
-        return axios.post('http://telegram-bot.manager/api/' + uri, data, { headers });
+        return requests.put('api/' + uri, data);
     },
 
     patch: (uri, data = {}) => {
-        let headers = api_requests.headers;
-        return axios.post('http://telegram-bot.manager/api/' + uri, data, { headers });
+        return requests.patch('api/' + uri, data);
     }
-
 }
 
 export default api_requests;

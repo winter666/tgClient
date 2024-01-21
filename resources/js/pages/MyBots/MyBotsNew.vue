@@ -79,7 +79,7 @@ export default {
             this.disabled_btn = true;
             this.createBot(data).then(response => {
                 this.disabled_btn = false;
-                this.$router.push('/home');
+                this.$router.push({ name: 'my-bots' });
             });
         },
         serializeData() {
@@ -88,7 +88,7 @@ export default {
                 api_key: this.api_key
             }
         },
-    }
+    },
 }
 </script>
 
