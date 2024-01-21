@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Traits\Permissions\Bot;
-
 
 use App\Enums\PermissionConst;
 use Spatie\Permission\Models\Permission;

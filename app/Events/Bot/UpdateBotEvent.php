@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Events\Bot;
-
 
 use App\Models\Bot;
 use Illuminate\Broadcasting\InteractsWithSockets;

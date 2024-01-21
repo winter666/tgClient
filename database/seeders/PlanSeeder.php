@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Database\Seeders;
-
 
 use App\Models\Store\Plan;
 use Illuminate\Database\Seeder;
