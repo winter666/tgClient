@@ -17,10 +17,31 @@ class ApiTestCase extends TestCase
         $this->setupUser();
     }
 
-    protected function requestGet($uri): TestResponse
+    protected function requestGet(string $uri): TestResponse
     {
         $this->actingAs($this->user);
 
         return $this->get("/api/{$uri}");
+    }
+
+    protected function requestPost(string $uri, array $data): TestResponse
+    {
+        $this->actingAs($this->user);
+
+        return $this->post("/api/{$uri}", $data);
+    }
+
+    protected function requestPatch(string $uri, array $data): TestResponse
+    {
+        $this->actingAs($this->user);
+
+        return $this->patch("/api/{$uri}", $data);
+    }
+
+    protected function requestDelete(string $uri): TestResponse
+    {
+        $this->actingAs($this->user);
+
+        return $this->delete("/api/{$uri}");
     }
 }

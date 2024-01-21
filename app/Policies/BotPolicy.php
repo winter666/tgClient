@@ -50,8 +50,8 @@ class BotPolicy
 
     public function delete(User $user, Bot $bot)
     {
-        if ($user->cannot('bot.delete')) {
-            return false;
+        if ($this->viewAdmin($user)) {
+            return true;
         }
 
         return $user->id === $bot->user_id;

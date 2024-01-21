@@ -15,13 +15,20 @@ class BotFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->localName();
+
         return [
-            'local_name' => $this->faker->userName,
+            'local_name' => $name,
             'api_key' => $this->faker->unique()->uuid,
             'config' => [],
             'status' => BotStatus::STATUS_PENDING,
             'user_id' => User::factory(),
-            'link' => 'https://t.me/' . $this->faker->unique()->uuid
+            'link' => 'https://t.me/' . $name
         ];
+    }
+
+    public function localName()
+    {
+        return $this->faker->word . 'Bot';
     }
 }

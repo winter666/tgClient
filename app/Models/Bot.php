@@ -21,14 +21,12 @@ use Illuminate\Database\Query\Builder;
  * @property string $link
  * @property User $user
  *
- * @method BotFactory factory()
+ * @method static BotFactory factory()
  * @method Builder forUser(User $user)
  */
 class Bot extends Model
 {
     use HasFactory;
-
-    public const STATUS_PENDING = 'PENDING';
 
     protected $fillable = [
         'local_name',

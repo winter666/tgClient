@@ -1,7 +1,5 @@
 FROM php:8.2-fpm
 
-WORKDIR /var/www/app
-
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 RUN install-php-extensions gd xdebug
@@ -24,7 +22,10 @@ RUN install-php-extensions gd csv
 RUN install-php-extensions gd apcu
 RUN install-php-extensions gd intl
 
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-##
-USER www
+RUN groupadd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
+
+WORKDIR /var/www/app
+
+USER www-data

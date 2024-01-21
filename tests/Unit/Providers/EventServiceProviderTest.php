@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Providers;
-
 
 use App\Listeners\AssignRoleAfterRegistrationListener;
 use Illuminate\Auth\Events\Registered;

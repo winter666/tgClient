@@ -23,7 +23,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int $bot_limit
  * @property Collection<Bot> $bots
  *
- * @method UserFactory factory()
+ * @method static  UserFactory factory()
  */
 class User extends Authenticatable
 {
