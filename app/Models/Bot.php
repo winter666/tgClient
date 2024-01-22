@@ -22,7 +22,7 @@ use Illuminate\Database\Query\Builder;
  * @property User $user
  *
  * @method static BotFactory factory()
- * @method Builder forUser(User $user)
+ * @method static Builder forUser(User $user)
  */
 class Bot extends Model
 {

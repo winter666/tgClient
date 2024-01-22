@@ -54,3 +54,5 @@ jobs:
           DB_CONNECTION: mysql
           DB_DATABASE: tg_manager_test
         run: vendor/bin/phpunit
+      - name: PHPStan
+        run: vendor/bin/phpstan analyse app tests database --memory-limit=-1
