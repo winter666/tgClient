@@ -18,7 +18,8 @@ class CreateBotsTable extends Migration
             $table->string('local_name');
             $table->string('link')->nullable(true);
             $table->string('api_key');
-            $table->enum('status', ['PENDING', 'CREATED', 'DELETED', 'WITH_ERRORS']);
+            $table->unsignedBigInteger('external_id')->nullable();
+            $table->string('status');
             $table->unsignedBigInteger('user_id');
             $table->jsonb('config')->nullable(true);
             $table->timestamps();

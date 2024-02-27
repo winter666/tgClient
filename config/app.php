@@ -234,4 +234,10 @@ return [
 
     ],
 
+    'integrations' => [
+        'telegram' => [
+            'base_uri' => env('TELEGRAM_API_BASE_URI', 'https://api.telegram.org/'),
+        ],
+    ],
+
 ];

@@ -77,7 +77,7 @@ export default {
 
             if (payload.field === 'api_key') {
                 this.error_checker.api_key = payload.validate.is_error;
-                if (payload.validate.is_error) {
+                if (!payload.validate.is_error) {
                     this.api_key = payload.data;
                 }
             }

@@ -17,6 +17,7 @@ use Illuminate\Database\Query\Builder;
  * @property string $api_key
  * @property array|null $config
  * @property string $status
+ * @property ?int $external_id
  * @property int $user_id
  * @property string $link
  * @property User $user
