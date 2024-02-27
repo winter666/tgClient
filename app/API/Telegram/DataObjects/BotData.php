@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\API\Telegram\DataObjects;
-
 
 use Spatie\DataTransferObject\Attributes\MapFrom;
 use Spatie\DataTransferObject\Attributes\MapTo;

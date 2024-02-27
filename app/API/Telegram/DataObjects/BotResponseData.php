@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\API\Telegram\DataObjects;
 
-
-use Illuminate\Support\Facades\Log;
 use Psr\Http\Message\ResponseInterface;
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -14,7 +11,7 @@ class BotResponseData extends DataTransferObject
 
     public ?BotData $result;
 
-    public static function fromResponse(ResponseInterface $response): static
+    public static function fromResponse(ResponseInterface $response): BotResponseData
     {
         $data = json_decode($response->getBody());
         $result = $data->result;
@@ -33,7 +30,7 @@ class BotResponseData extends DataTransferObject
             );
         }
 
-        return new static(
+        return new BotResponseData(
             ok: $data->ok,
             result: $botData
         );
