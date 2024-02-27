@@ -57,7 +57,7 @@ export default {
 
             if (payload.field === 'api_key') {
                 this.error_checker.api_key = payload.validate.is_error;
-                if (payload.validate.is_error) {
+                if (!payload.validate.is_error) {
                     this.api_key = payload.data;
                 }
             }
@@ -65,7 +65,6 @@ export default {
             this.disabled_btn = !this.errorChecker();
         },
         errorChecker() {
-            console.log(this.error_checker);
             for (let field_name in this.error_checker) {
                 if (this.error_checker[field_name]) {
                     return false;

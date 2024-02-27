@@ -24,7 +24,7 @@ class CreateBotFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'local_name' => ['required', 'regex:/^[A-z_]+(_bot|Bot)$/i'],
+            'local_name' => ['required', 'regex:/^([\w_]+(_bot|Bot))$/i'],
             'api_key' => 'required|string'
         ];
     }
